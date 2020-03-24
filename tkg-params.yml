@@ -1,0 +1,26 @@
+tkg_install_branch: master # use local_ova to use local nginx server with OVA's locally
+
+## webserver | ova filename
+ova_webserver: "http://nginx"
+tkg_base_ova_file_name: "photon-3-v1.17.3+vmware.1.ova"
+tkg_haproxy_ova_file_name: "capv-haproxy-v0.6.0.ova"
+
+## vcenter settings
+vcenter_insecure: 1
+vcenter_ca_cert:
+vcenter_host: vlab-vcsa.vballin.com
+vcenter_usr: administrator@vsphere.local
+vcenter_pwd: VMware1!
+vcenter_data_center: vlab-dc
+vc_datastore: vlab-nfs-ds-01
+vc_resource_pool: /vlab-dc/host/vlab-mgmt/Resources/tf-tkg # /<vSphere-Datcenter/host/<vSphere-Cluster>/Resources/<vSphere-ResourcePool>
+
+## tkg base ova settings
+vc_vm_folder: tf-tkg
+tkg_base_network: vlab-mgmt
+tkg_base_power_on: false
+
+## tkg haproxy ova settings
+vc_vm_folder: tf-tkg
+tkg_haproxy_network: vlab-mgmt
+tkg_haproxy_power_on: false

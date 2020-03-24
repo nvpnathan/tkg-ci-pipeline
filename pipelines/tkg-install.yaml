@@ -1,0 +1,75 @@
+tkg-base-deploy-params: &tkg-base-deploy-params
+  GOVC_INSECURE: ((vcenter_insecure))
+  GOVC_CA_CERT: ((vcenter_ca_cert))
+  GOVC_URL: ((vcenter_host))
+  GOVC_USERNAME: ((vcenter_usr))
+  GOVC_PASSWORD: ((vcenter_pwd))
+  GOVC_DATACENTER: ((vcenter_data_center))
+  GOVC_DATASTORE: ((vc_datastore))
+  GOVC_RESOURCE_POOL: ((vc_resource_pool))
+  VC_VM_FOLDER: ((vc_vm_folder))
+  TKG_BASE_PORTGROUP: ((tkg_base_network))
+  TKG_BASE_POWER_ON: ((tkg_base_power_on))
+
+tkg-haproxy-deploy-params: &tkg-haproxy-deploy-params
+  GOVC_INSECURE: ((vcenter_insecure))
+  GOVC_CA_CERT: ((vcenter_ca_cert))
+  GOVC_URL: ((vcenter_host))
+  GOVC_USERNAME: ((vcenter_usr))
+  GOVC_PASSWORD: ((vcenter_pwd))
+  GOVC_DATACENTER: ((vcenter_data_center))
+  GOVC_DATASTORE: ((vc_datastore))
+  GOVC_RESOURCE_POOL: ((vc_resource_pool))
+  VC_VM_FOLDER: ((vc_vm_folder))
+  TKG_HAPROXY_PORTGROUP: ((tkg_haproxy_network))
+  TKG_HAPROXY_POWER_ON: ((tkg_haproxy_power_on))
+
+resource_types:
+- name: file-url
+  type: docker-image
+  source:
+    repository: pivotalservices/concourse-curl-resource
+    tag: latest
+
+resources:
+- name: tkg-pipeline
+  type: git
+  source:
+    uri: https://github.com/nvpnathan/tkg-ci-pipeline.git
+    branch: ((tkg_install_branch))
+
+- name: tkg-base-ova
+  type: file-url
+  source:
+    url: ((ova_webserver))/((tkg_base_ova_file_name))
+    filename: ((tkg_base_ova_file_name))
+    skip_ssl_verification: true
+
+- name: tkg-haproxy-ova
+  type: file-url
+  source:
+    url: ((ova_webserver))/((tkg_haproxy_ova_file_name))
+    filename: ((tkg_haproxy_ova_file_name))
+    skip_ssl_verification: true
+
+jobs:
+
+- name: deploy-tkg-base
+  plan:
+  - in_parallel:
+    - get: tkg-pipeline
+    - get: tkg-base-ova
+  
+  - task: deploy
+    file: tkg-pipeline/tasks/import-base/task.yml
+    params: *tkg-base-deploy-params
+
+- name: deploy-tkg-haproxy
+  plan:
+  - in_parallel:
+    - get: tkg-pipeline
+    - get: tkg-haproxy-ova
+  
+  - task: deploy
+    file: tkg-pipeline/tasks/import-haproxy/task.yml
+    params: *tkg-haproxy-deploy-params

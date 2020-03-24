@@ -1,0 +1,43 @@
+---
+
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: dyanngg/nsx-t-gen-worker}
+
+params:
+  GOVC_INSECURE:
+  GOVC_CA_CERT:
+  GOVC_URL:
+  GOVC_USERNAME:
+  GOVC_PASSWORD:
+  GOVC_DATACENTER:
+  GOVC_DATASTORE:
+  GOVC_RESOURCE_POOL:
+  VC_DEPLOYMENT_SIZE:
+  VC_DISK_PROVISION:
+  VC_IP_POLICY:
+  VC_NET_MODE:
+  VC_NAME:
+  VC_PORTGROUP:
+  VC_GATEWAY:
+  VC_DOMAIN_NAME:
+  VC_SEARCH_PATH:
+  VC_DNS_SERVER:
+  VC_IP:
+  VC_NETMASK:
+  VC_NET_ID:
+  VC_ADMIN_PASS:
+  VC_ROOT_PASS:
+  VC_FQDN:
+  #VC_VM_FOLDER: ((vc_vm_folder))
+  VC_POWER_ON:
+  VC_VM_FOLDER:
+
+inputs:
+  - name: vc-pipeline
+  - name: vc-ova
+
+run:
+  path: vc-pipeline/tasks/import-vc/task.sh

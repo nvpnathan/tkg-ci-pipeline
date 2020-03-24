@@ -1,0 +1,26 @@
+---
+
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: dyanngg/nsx-t-gen-worker}
+
+params:
+  GOVC_INSECURE: 
+  GOVC_CA_CERT:
+  GOVC_URL: 
+  GOVC_USERNAME:
+  GOVC_PASSWORD:
+  GOVC_DATACENTER:
+  GOVC_DATASTORE:
+  GOVC_RESOURCE_POOL:
+  TKG_BASE_PORTGROUP:
+  VC_VM_FOLDER:
+  
+inputs:
+  - name: tkg-pipeline
+  - name: tkg-base-ova
+
+run:
+  path: tkg-pipeline/tasks/import-base/task.sh
