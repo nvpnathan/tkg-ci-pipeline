@@ -23,6 +23,8 @@ EOF
 
 jq \
   --arg network "$TKG_HAPROXY_PORTGROUP" \
+  --argjson powerOn "$TKG_HAPROXY_POWER_ON" \
+  --from-file filters \
   tkg-haproxy-import.json > options.json
 
 cat options.json

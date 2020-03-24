@@ -23,6 +23,7 @@ EOF
 
 jq \
   --arg network "$TKG_BASE_PORTGROUP" \
+  --argjson powerOn "$TKG_BASE_POWER_ON" \
   tkg-base-import.json > options.json
 
 cat options.json
