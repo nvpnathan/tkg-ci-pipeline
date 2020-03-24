@@ -33,7 +33,7 @@ cat options.json
 if [ -z "$VC_VM_FOLDER" ]; then
   govc import.ova -options=options.json "$file_path"
 else
-  if [ "$(govc folder.info "$VC_VM_FOLDER" 2>&1 | grep "$VC_VM_FOLDER" | awk '{print $2}')" != "$VC_VM_FOLDER" ]; then
+  if [ "$(govc folder.info "$VC_VM_FOLDER" 2>&1 | grep "$VC_VM_FOLDER" | awk 'NR==1 {print $2}')" != "$VC_VM_FOLDER" ]; then
     govc folder.create "$VC_VM_FOLDER"
   fi
   govc import.ova -folder="$VC_VM_FOLDER" -options=options.json "$file_path"
