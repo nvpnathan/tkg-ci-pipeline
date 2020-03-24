@@ -7,25 +7,21 @@ image_resource:
   source: {repository: dyanngg/nsx-t-gen-worker}
 
 params:
-  GOVC_INSECURE:
+  GOVC_INSECURE: 
   GOVC_CA_CERT:
-  GOVC_URL:
+  GOVC_URL: 
   GOVC_USERNAME:
   GOVC_PASSWORD:
   GOVC_DATACENTER:
   GOVC_DATASTORE:
   GOVC_RESOURCE_POOL:
-  VC_DEPLOYMENT_SIZE:
-  VC_DISK_PROVISION:
-  VC_IP_POLICY:
-  VC_NET_MODE:
-  VC_NAME:
-  VC_PORTGROUP:
+  TKG_HAPROXY_PORTGROUP:
+  TKG_HAPROXY_POWER_ON:
   VC_VM_FOLDER:
 
 inputs:
-  - name: vc-pipeline
-  - name: vc-ova
+  - name: tkg-pipeline
+  - name: tkg-haproxy-ova
 
 run:
-  path: vc-pipeline/tasks/import-vc/task.sh
+  path: tkg-pipeline/tasks/import-haproxy/task.sh

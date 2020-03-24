@@ -16,8 +16,9 @@ params:
   GOVC_DATASTORE:
   GOVC_RESOURCE_POOL:
   TKG_BASE_PORTGROUP:
+  TKG_BASE_POWER_ON:
   VC_VM_FOLDER:
-  
+
 inputs:
   - name: tkg-pipeline
   - name: tkg-base-ova
