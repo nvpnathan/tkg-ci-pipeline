@@ -21,18 +21,6 @@ params:
   VC_NET_MODE:
   VC_NAME:
   VC_PORTGROUP:
-  VC_GATEWAY:
-  VC_DOMAIN_NAME:
-  VC_SEARCH_PATH:
-  VC_DNS_SERVER:
-  VC_IP:
-  VC_NETMASK:
-  VC_NET_ID:
-  VC_ADMIN_PASS:
-  VC_ROOT_PASS:
-  VC_FQDN:
-  #VC_VM_FOLDER: ((vc_vm_folder))
-  VC_POWER_ON:
   VC_VM_FOLDER:
 
 inputs:

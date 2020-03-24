@@ -18,12 +18,14 @@ fi
 govc import.spec "$file_path" | python -m json.tool > tkg-base-import.json
 
 cat > filters <<'EOF'
-.NetworkMapping[].Network = $network
+.NetworkMapping[].Network = $network |
+.PowerOn = $powerOn
 EOF
 
 jq \
   --arg network "$TKG_BASE_PORTGROUP" \
   --argjson powerOn "$TKG_BASE_POWER_ON" \
+  --from-file filters \
   tkg-base-import.json > options.json
 
 cat options.json
