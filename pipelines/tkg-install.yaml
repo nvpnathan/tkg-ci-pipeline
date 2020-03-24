@@ -8,6 +8,7 @@ tkg-base-deploy-params: &tkg-base-deploy-params
   GOVC_DATASTORE: ((vc_datastore))
   GOVC_RESOURCE_POOL: ((vc_resource_pool))
   VC_VM_FOLDER: ((vc_vm_folder))
+  TKG_BASE_VM_NAME: ((tkg_base_vm_name))
   TKG_BASE_PORTGROUP: ((tkg_base_network))
   TKG_BASE_POWER_ON: ((tkg_base_power_on))
 
@@ -21,6 +22,7 @@ tkg-haproxy-deploy-params: &tkg-haproxy-deploy-params
   GOVC_DATASTORE: ((vc_datastore))
   GOVC_RESOURCE_POOL: ((vc_resource_pool))
   VC_VM_FOLDER: ((vc_vm_folder))
+  TKG_HAPROXY_VM_NAME: ((tkg_haproxy_vm_name))
   TKG_HAPROXY_PORTGROUP: ((tkg_haproxy_network))
   TKG_HAPROXY_POWER_ON: ((tkg_haproxy_power_on))
 

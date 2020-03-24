@@ -18,11 +18,13 @@ fi
 govc import.spec "$file_path" | python -m json.tool > tkg-base-import.json
 
 cat > filters <<'EOF'
+.Name = $vmName |
 .NetworkMapping[].Network = $network |
 .PowerOn = $powerOn
 EOF
 
 jq \
+  --arg vmName "$TKG_BASE_VM_NAME" \
   --arg network "$TKG_BASE_PORTGROUP" \
   --argjson powerOn "$TKG_BASE_POWER_ON" \
   --from-file filters \
@@ -38,3 +40,6 @@ else
   fi
   govc import.ova -folder="$VC_VM_FOLDER" -options=options.json "$file_path"
 fi
+
+govc snapshot.create -vm "$TKG_BASE_VM_NAME" root
+govc vm.markastemplate "$TKG_BASE_VM_NAME"

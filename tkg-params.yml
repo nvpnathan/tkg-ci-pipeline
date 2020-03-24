@@ -17,10 +17,12 @@ vc_resource_pool: /vlab-dc/host/vlab-mgmt/Resources/tf-tkg # /<vSphere-Datcenter
 
 ## tkg base ova settings
 vc_vm_folder: tf-tkg
+tkg_base_vm_name: photon-3-v1.17.3+vmware.1.ova
 tkg_base_network: vlab-mgmt
 tkg_base_power_on: false
 
 ## tkg haproxy ova settings
 vc_vm_folder: tf-tkg
+tkg_haproxy_vm_name: capv-haproxy-v0.6.0.ova
 tkg_haproxy_network: vlab-mgmt
 tkg_haproxy_power_on: false
