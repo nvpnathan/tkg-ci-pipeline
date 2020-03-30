@@ -23,6 +23,6 @@ tkg_base_power_on: false
 
 ## tkg haproxy ova settings
 vc_vm_folder: tf-tkg
-tkg_haproxy_vm_name: capv-haproxy-v0.6.0
+tkg_haproxy_vm_name: capv-haproxy-v0.6.2
 tkg_haproxy_network: vlab-mgmt
 tkg_haproxy_power_on: false
